@@ -9,8 +9,8 @@
 /// @brief 
 ///
 /// Detailed 
-typedef struct {
-    DictEntry* nextEntry;
+typedef struct m_dictEntry {
+    struct m_dictEntry* nextEntry;
     uint64_t key;
     void* data;
 } DictEntry;
@@ -26,7 +26,7 @@ typedef struct {
     size_t size;
 } Dict;
 
-void InitDictEntry(DictEntry*, uint64_t, void*);
+void InitDictEntry(DictEntry*, uint64_t);
 void DictEntrySet(DictEntry*, uint64_t, void*);
 void* DictEntryGet(DictEntry*, uint64_t);
 

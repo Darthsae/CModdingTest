@@ -6,6 +6,7 @@
 #include <Logging.h>
 #include <stdlib.h>
 #include <Random.h>
+#include <CString.h>
 
 __declspec(dllexport) int8_t InitMod(CGameAPI* a_gameAPI) {
     LOG_INFO("%s loaded.", MOD_NAME);

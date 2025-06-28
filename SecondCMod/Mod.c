@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <CGameAPI.h>
 #include <BinaryTree.h>
-#include <String.h>
+#include <CString.h>
 #include <Logging.h>
 #include <stdlib.h>
 #include <Random.h>

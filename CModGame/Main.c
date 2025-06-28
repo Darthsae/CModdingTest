@@ -79,6 +79,10 @@ int main(int argc, char** argv) {
     LOG_INFO("Loading Data");
     m_LoadData(libraries, libraryCount, &gameAPI);
     LOG_INFO("Finished Loading Data\n");
+
+    LOG_INFO("Initializing Mods");
+    m_InitMods(libraries, libraryCount, &gameAPI);
+    LOG_INFO("Finished Initializing Mods\n");
     #pragma endregion
 
     #pragma region Main Loop

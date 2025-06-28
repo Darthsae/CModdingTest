@@ -26,13 +26,14 @@ void* DictEntryGet(DictEntry* a_dictEntry, uint64_t a_key) {
     } else if (a_dictEntry->nextEntry != NULL) {
         return DictEntryGet(a_dictEntry->nextEntry, a_key);
     }
+    return NULL;
 }
 
 void InitDict(Dict* a_dict) {
     a_dict->size = 32;
     a_dict->entries = malloc(a_dict->size * sizeof(DictEntry));
     for (int i = 0; i < a_dict->size; i++) {
-        InitDictEntry(&a_dict->entries[i], i, NULL);
+        InitDictEntry(&a_dict->entries[i], i);
     }
 }
 
