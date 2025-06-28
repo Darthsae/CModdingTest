@@ -1,0 +1,36 @@
+#ifndef DICT_H
+#define DICT_H
+#include <stdio.h>
+#include <stdint.h>
+#include <windows.h>
+#include <CString.h>
+
+/// @struct DictEntry
+/// @brief 
+///
+/// Detailed 
+typedef struct {
+    DictEntry* nextEntry;
+    uint64_t key;
+    void* data;
+} DictEntry;
+
+/// @struct Dict
+/// @brief A structure containing an array of DictEntry's.
+///
+/// Detailed 
+typedef struct {
+    /// @brief 
+    DictEntry* entries;
+    /// @brief 
+    size_t size;
+} Dict;
+
+void InitDictEntry(DictEntry*, uint64_t, void*);
+void DictEntrySet(DictEntry*, uint64_t, void*);
+void* DictEntryGet(DictEntry*, uint64_t);
+
+void InitDict(Dict*);
+void DictSet(Dict*, uint64_t, void*);
+void* DictGet(Dict*, uint64_t);
+#endif
