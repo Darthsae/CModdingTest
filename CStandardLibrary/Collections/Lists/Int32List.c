@@ -6,7 +6,7 @@
 void InitInt32List(Int32List* a_list, size_t a_index) {
     a_list->m_maxSize = a_index;
     a_list->size = 0;
-    a_list->data = malloc(a_list->m_maxSize * sizeof(uint32_t));
+    a_list->data = malloc(a_list->m_maxSize * sizeof(int32_t));
     assert(("Data is not NULL", a_list->data != NULL));
 }
 

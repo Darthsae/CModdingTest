@@ -8,5 +8,7 @@ typedef struct {
     size_t length;
 } FatPtr;
 
+void InitFatPtr(FatPtr*, void*, size_t);
 void FatPtrSet(FatPtr*, void*, size_t);
+void DestroyFatPtr(FatPtr*);
 #endif

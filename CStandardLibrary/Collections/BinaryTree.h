@@ -4,40 +4,41 @@
 #include <stdint.h>
 #include <windows.h>
 #include <stdbool.h>
+#include <FatPtr.h>
 
 /// @struct BinaryTreeNode
 /// @brief Brief
 ///
 /// Detailed 
-struct BinaryTreeNode {
+typedef struct m_binaryTreeNode {
     /// @brief 
     uint64_t key;
     /// @brief 
-    void* data;
+    FatPtr data;
     /// @brief 
-    struct BinaryTreeNode* left;
+    struct m_binaryTreeNode* left;
     /// @brief 
-    struct BinaryTreeNode* right;
-};
+    struct m_binaryTreeNode* right;
+} BinaryTreeNode;
 
 /// @brief 
 /// @param  
 /// @param  
 /// @param  
 /// @return 
-bool BinaryTreeInsert(struct BinaryTreeNode*, uint64_t, void*);
+bool BinaryTreeInsert(BinaryTreeNode*, uint64_t, FatPtr);
 
 /// @brief 
 /// @param  
 /// @param  
 /// @return 
-void* BinaryTreeQuery(struct BinaryTreeNode*, uint64_t);
+FatPtr BinaryTreeQuery(BinaryTreeNode*, uint64_t);
 
 /// @brief 
 /// @param 
-void InitBinaryTree(struct BinaryTreeNode*);
+void InitBinaryTree(BinaryTreeNode*);
 
 /// @brief 
 /// @param 
-void DestroyBinaryTree(struct BinaryTreeNode*);
+void DestroyBinaryTree(BinaryTreeNode*);
 #endif

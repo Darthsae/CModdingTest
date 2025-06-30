@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <windows.h>
 #include <CString.h>
+#include <FatPtr.h>
 
 /// @struct DictEntry
 /// @brief 
@@ -12,7 +13,7 @@
 typedef struct m_dictEntry {
     struct m_dictEntry* nextEntry;
     uint64_t key;
-    void* data;
+    FatPtr data;
 } DictEntry;
 
 /// @struct Dict
@@ -27,10 +28,10 @@ typedef struct {
 } Dict;
 
 void InitDictEntry(DictEntry*, uint64_t);
-void DictEntrySet(DictEntry*, uint64_t, void*);
-void* DictEntryGet(DictEntry*, uint64_t);
+void DictEntrySet(DictEntry*, uint64_t, FatPtr);
+FatPtr DictEntryGet(DictEntry*, uint64_t);
 
 void InitDict(Dict*, size_t);
-void DictSet(Dict*, uint64_t, void*);
-void* DictGet(Dict*, uint64_t);
+void DictSet(Dict*, uint64_t, FatPtr);
+FatPtr DictGet(Dict*, uint64_t);
 #endif

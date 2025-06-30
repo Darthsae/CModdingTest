@@ -2,14 +2,13 @@
 
 void InitDictEntry(DictEntry* a_dictEntry, uint64_t a_key) {
     a_dictEntry->key = a_key;
-    a_dictEntry->data = malloc(0);
+    InitFatPtr(&a_dictEntry->data, NULL, 0);
     a_dictEntry->nextEntry = NULL;
 }
 
-void DictEntrySet(DictEntry* a_dictEntry, uint64_t a_key, void* a_value) {
+void DictEntrySet(DictEntry* a_dictEntry, uint64_t a_key, FatPtr a_value) {
     if (a_dictEntry->key == a_key) {
-        a_dictEntry->data = realloc(a_dictEntry->data, sizeof(a_value));
-        memcpy(a_dictEntry->data, a_value, sizeof(a_value));
+        FatPtrSet(&a_dictEntry->data, a_value.data, a_value.length);
     } else {
         if (a_dictEntry->nextEntry == NULL) {
             a_dictEntry->nextEntry = malloc(sizeof(DictEntry));
@@ -20,13 +19,14 @@ void DictEntrySet(DictEntry* a_dictEntry, uint64_t a_key, void* a_value) {
     }
 }
 
-void* DictEntryGet(DictEntry* a_dictEntry, uint64_t a_key) {
+FatPtr DictEntryGet(DictEntry* a_dictEntry, uint64_t a_key) {
     if (a_dictEntry->key == a_key) {
         return a_dictEntry->data;
     } else if (a_dictEntry->nextEntry != NULL) {
         return DictEntryGet(a_dictEntry->nextEntry, a_key);
     }
-    return NULL;
+    FatPtr ptr = {NULL, 0};
+    return ptr;
 }
 
 void InitDict(Dict* a_dict, size_t breadth) {
@@ -37,12 +37,12 @@ void InitDict(Dict* a_dict, size_t breadth) {
     }
 }
 
-void DictSet(Dict* a_dict, uint64_t a_key, void* a_value) {
+void DictSet(Dict* a_dict, uint64_t a_key, FatPtr a_value) {
     size_t index = a_key % a_dict->size;
     DictEntrySet(&a_dict->entries[index], a_key, a_value);
 }
 
-void* DictGet(Dict* a_dict, uint64_t a_key) {
+FatPtr DictGet(Dict* a_dict, uint64_t a_key) {
     size_t index = a_key % a_dict->size;
     return DictEntryGet(&a_dict->entries[index], a_key);
 }

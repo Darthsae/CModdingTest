@@ -10,9 +10,12 @@
 
 __declspec(dllexport) int8_t InitMod(CGameAPI* a_gameAPI) {
     LOG_INFO("%s loaded.", MOD_NAME);
+    FatPtr fat;
     uint32_t* valToSave = malloc(sizeof(uint32_t));
     *valToSave = 120;
-    BinaryTreeInsert(&a_gameAPI->tree, HashCharArray((char*)"aa"), (void*)valToSave);
+    InitFatPtr(&fat, (void*)valToSave, sizeof(uint32_t));
+    BinaryTreeInsert(&a_gameAPI->tree, HashCharArray((char*)"aa"), fat);
+    DestroyFatPtr(&fat);
     return 0;
 }
 
@@ -28,6 +31,6 @@ __declspec(dllexport) int8_t UpdateMod(CGameAPI* a_gameAPI) {
 
 __declspec(dllexport) int8_t ExitMod(CGameAPI* a_gameAPI) {
     LOG_INFO("%s unloaded.", MOD_NAME);
-    LOG_INFO("%i", *(uint32_t*)BinaryTreeQuery(&a_gameAPI->tree, HashCharArray((char*)"aa")));
+    LOG_INFO("%i", *(uint32_t*)BinaryTreeQuery(&a_gameAPI->tree, HashCharArray((char*)"aa")).data);
     return 0;
 }

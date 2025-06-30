@@ -16,7 +16,7 @@ typedef struct {
     /// @brief The delta time between frames.
     double deltaTime;
     /// @brief The binary tree containing custom data.
-    struct BinaryTreeNode tree;
+    BinaryTreeNode tree;
     /// @brief 
     EventHandler updateEventHandler;
     /// @brief 
