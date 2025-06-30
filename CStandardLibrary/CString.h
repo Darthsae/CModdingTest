@@ -2,7 +2,7 @@
 #define STRING_H
 #include <stdio.h>
 #include <stdint.h>
-#include <windows.h>
+#include <string.h>
 /// @file String.h
 /// @brief Defines the String struct and functions to modify them.
 ///
@@ -24,11 +24,23 @@ typedef struct {
 /// @brief Create a new @c String instance with the @p a_chars parameter. 
 /// @param[in] a_chars The character array to initialize the String with.
 /// @return A string with the contents of the @p a_chars parameter.
-String InitString(char*);
+void InitString(String*, const char*);
 
 /// @brief 
-/// @return 
-String EmptyString(void);
+/// @param[in] a_string
+void EmptyString(String*);
+
+/// @brief
+/// @param[in] a_string
+size_t StringLen(const String*);
+
+/// @brief 
+/// @param[in] a_string
+void StringConcatChars(String*, const char*);
+
+/// @brief 
+/// @param[in] a_string
+void StringConcatString(String*, const String*);
 
 /// @brief 
 /// @param[in] a_string

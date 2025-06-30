@@ -3,6 +3,10 @@ project(CModTest VERSION 0.1.0 LANGUAGES C)
 
 #configure_file(<input> <output> COPYONLY)
 
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+#set(BUILD_SHARED_LIBS TRUE)
+#set(PRECOMPILE_HEADERS TRUE)
+
 file(GLOB_RECURSE CStandardLibrarySourceFiles "CStandardLibrary/*.c" CMAKE_CONFIGURE_DEPENDS)
 file(GLOB_RECURSE CStandardLibraryHeaderFiles "CStandardLibrary/*.h" CMAKE_CONFIGURE_DEPENDS)
 file(GLOB_RECURSE CModLibrarySourceFiles "CModLibrary/*.c" CMAKE_CONFIGURE_DEPENDS)
@@ -16,7 +20,7 @@ file(GLOB_RECURSE SecondCModSourceFiles "SecondCMod/*.c" CMAKE_CONFIGURE_DEPENDS
 file(GLOB_RECURSE SecondCModHeaderFiles "SecondCMod/*.h" CMAKE_CONFIGURE_DEPENDS)
 file(GLOB_RECURSE SecondCModAssetFiles RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/SecondCMod" "${CMAKE_CURRENT_SOURCE_DIR}/SecondCMod/Assets/**/*" CMAKE_CONFIGURE_DEPENDS)
 
-add_library(CStandardLibrary SHARED ${CStandardLibrarySourceFiles})
+add_library(CStandardLibrary STATIC ${CStandardLibrarySourceFiles} ${CStandardLibraryHeaderFiles})
 target_include_directories(CStandardLibrary PUBLIC "CStandardLibrary")
 target_link_directories(CStandardLibrary PUBLIC "CStandardLibrary")
 source_group(
@@ -35,7 +39,7 @@ set_target_properties(CStandardLibrary PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/Release/Lib"
 )
 
-add_library(CModLibrary SHARED ${CModLibrarySourceFiles})
+add_library(CModLibrary STATIC ${CModLibrarySourceFiles} ${CModLibraryHeaderFiles})
 target_link_libraries(CModLibrary PRIVATE CStandardLibrary)
 target_include_directories(CModLibrary PUBLIC "CModLibrary")
 target_link_directories(CModLibrary PUBLIC "CModLibrary")
@@ -55,7 +59,7 @@ set_target_properties(CModLibrary PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/Release/Lib"
 )
 
-add_library(ExampleCMod SHARED ${ExampleCModSourceFiles})
+add_library(ExampleCMod SHARED ${ExampleCModSourceFiles} ${ExampleCModHeaderFiles})
 
 target_link_libraries(ExampleCMod PRIVATE CModLibrary CStandardLibrary)
 
@@ -75,7 +79,7 @@ foreach(ExampleCModAssetFile IN LISTS ExampleCModAssetFiles)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/ExampleCMod/${ExampleCModAssetFile}" "${CMAKE_BINARY_DIR}/Debug/Mods/ExampleCMod/${ExampleCModAssetFile}")
 endforeach(ExampleCModAssetFile)
 
-add_library(SecondCMod SHARED ${SecondCModSourceFiles})
+add_library(SecondCMod SHARED ${SecondCModSourceFiles} ${SecondCModHeaderFiles})
 
 target_link_libraries(SecondCMod PRIVATE CModLibrary CStandardLibrary)
 
