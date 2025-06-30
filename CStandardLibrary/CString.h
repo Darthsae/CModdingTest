@@ -21,29 +21,30 @@ typedef struct {
     size_t m_maxSize;
 } String;
 
-/// @brief Create a new @c String instance with the @p a_chars parameter. 
+/// @brief Initialize a @c String instance with the @p a_chars parameter.
+/// @param[out] a_string The String to initialize. 
 /// @param[in] a_chars The character array to initialize the String with.
-/// @return A string with the contents of the @p a_chars parameter.
 void InitString(String*, const char*);
 
-/// @brief 
-/// @param[in] a_string
+/// @brief Initialize a @c String to be empty.
+/// @param[out] a_string The @c String to initalize.
 void EmptyString(String*);
 
-/// @brief
-/// @param[in] a_string
+/// @brief Get the length of a @c String.
+/// @param[in] a_string The @c String to get the length of.
 size_t StringLen(const String*);
 
 /// @brief 
 /// @param[in] a_string
 void StringConcatChars(String*, const char*);
 
-/// @brief 
-/// @param[in] a_string
+/// @brief Concatenate a @c String onto another @c String.
+/// @param[in,out] a_string The @c String to be concatenated onto.
+/// @param[in] a_otherString The @c String to be concatenated.
 void StringConcatString(String*, const String*);
 
 /// @brief 
-/// @param[in] a_string
+/// @param[in,out] a_string
 /// @param[in] a_char
 void SetString(String*, char*);
 

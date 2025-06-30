@@ -11,34 +11,34 @@
 ///
 /// Detailed 
 typedef struct m_binaryTreeNode {
-    /// @brief 
+    /// @brief The key of the @c BinaryTreeNode.
     uint64_t key;
-    /// @brief 
+    /// @brief The data of the @c BinaryTreeNode.
     FatPtr data;
-    /// @brief 
+    /// @brief The left leaf of the @c BinaryTreeNode.
     struct m_binaryTreeNode* left;
-    /// @brief 
+    /// @brief The right leaf of the @c BinaryTreeNode.
     struct m_binaryTreeNode* right;
 } BinaryTreeNode;
 
-/// @brief 
-/// @param  
-/// @param  
-/// @param  
-/// @return 
+/// @brief Inserts a value into a @c BinaryTreeNode with a key.
+/// @param[in,out] a_tree The @c BinaryTreeNode to insert @p a_data into.
+/// @param[in] a_key The key of the data to insert.
+/// @param[in] a_data The data to insert into the @c BinaryTreeNode @p a_tree.
+/// @return Whether or not the insertion was successful.
 bool BinaryTreeInsert(BinaryTreeNode*, uint64_t, FatPtr);
 
-/// @brief 
-/// @param  
-/// @param  
-/// @return 
+/// @brief Gets the value of a key in a @c BinaryTreeNode.
+/// @param[in,out] a_tree The @c BinaryTreeNode to query.
+/// @param[in] a_key The key to find.
+/// @return A @c FatPtr containing the data.
 FatPtr BinaryTreeQuery(BinaryTreeNode*, uint64_t);
 
-/// @brief 
-/// @param 
+/// @brief Initializes a @c BinaryTreeNode.
+/// @param[out] a_tree The @c BinaryTreeNode to initialize.
 void InitBinaryTree(BinaryTreeNode*);
 
-/// @brief 
-/// @param 
+/// @brief Destroys a @c BinaryTreeNode.
+/// @param[in] a_tree The @c BinaryTreeNode to destroy.
 void DestroyBinaryTree(BinaryTreeNode*);
 #endif

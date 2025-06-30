@@ -53,9 +53,9 @@ uint8_t LoadData(char* a_filepath, char** a_buffer) {
         }
     }
 
-    for (size_t i = 0; i < allocations; i++) {
-        //printf("%zi/%zi: %s\n", i + 1, allocations, a_buffer[i]);
-    }
+    /*for (size_t i = 0; i < allocations; i++) {
+        printf("%zi/%zi: %s\n", i + 1, allocations, a_buffer[i]);
+    }*/
     
     fclose(file);
     return 0;

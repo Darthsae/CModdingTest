@@ -5,6 +5,7 @@
 #include <Collections/BinaryTree.h>
 #include <EventHandler.h>
 #include <Collections/Dict.h>
+#include <CDataDefinition.h>
 
 /// @struct CGameAPI
 /// @brief The API struct for the game.
@@ -15,11 +16,11 @@ typedef struct {
     bool running;
     /// @brief The delta time between frames.
     double deltaTime;
-    /// @brief The binary tree containing custom data.
+    /// @brief The @c BinaryTreeNode containing custom data.
     BinaryTreeNode tree;
-    /// @brief 
+    /// @brief The @c EventHandler for updates.
     EventHandler updateEventHandler;
-    /// @brief 
+    /// @brief The @c Dict holding the @c CDataDefinition's that are initialized.
     Dict* definitions;
 } CGameAPI;
 
@@ -30,6 +31,6 @@ CGameAPI InitCGameAPI(void);
 
 
 /// @brief Terminates a CGameAPI instance.
-/// @param a_gameAPI A pointer to the CGameAPI to terminate.
+/// @param[in] a_gameAPI A pointer to the CGameAPI to terminate.
 void TerminateCGameAPI(CGameAPI*);
 #endif

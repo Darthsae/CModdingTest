@@ -18,7 +18,7 @@ typedef struct {
 } StringList;
 
 /// @brief Initialize a list with a maximum capacity.
-/// @param[in] a_list The list to be initialized.
+/// @param[out] a_list The list to be initialized.
 /// @param[in] a_capacity The max capacity of the list. 
 void InitStringList(StringList*, size_t);
 
@@ -35,13 +35,13 @@ bool StringListContains(StringList*, String);
 size_t StringListCount(StringList*, String);
 
 /// @brief Insert a value into a list at an index.
-/// @param[in] a_list The list to insert the value into.
+/// @param[in,out] a_list The list to insert the value into.
 /// @param[in] a_index The index to insert the value at.
 /// @param[in] a_value The value to insert.
 void StringListInsert(StringList*, size_t, String);
 
 /// @brief Append a value onto the end of a list.
-/// @param[in] a_list The list to append the value to.
+/// @param[in,out] a_list The list to append the value to.
 /// @param[in] a_value The value to append to the end of the list.
 void StringListAppend(StringList*, String);
 
@@ -58,17 +58,17 @@ String StringListGet(StringList*, size_t);
 size_t StringListFind(StringList*, String);
 
 /// @brief Remove a value from a list.
-/// @param[in] a_list The list to remove the value from.
+/// @param[in,out] a_list The list to remove the value from.
 /// @param[in] a_value The value to remove from the list.
 void StringListRemoveValue(StringList*, String);
 
 /// @brief Remove a value from a list at an index.
-/// @param[in] a_list The list to remove the index from.
+/// @param[in,out] a_list The list to remove the index from.
 /// @param[in] a_index The index to remove the value from.
 void StringListRemoveIndex(StringList*, size_t);
 
 /// @brief Pop the top value from a list.
-/// @param[in] a_list The list to pop the top from.
+/// @param[in,out] a_list The list to pop the top from.
 /// @return The value that was popped.
 String StringListPopTop(StringList*);
 

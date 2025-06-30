@@ -29,8 +29,8 @@ FatPtr DictEntryGet(DictEntry* a_dictEntry, uint64_t a_key) {
     return ptr;
 }
 
-void InitDict(Dict* a_dict, size_t breadth) {
-    a_dict->size = breadth;
+void InitDict(Dict* a_dict, size_t a_breadth) {
+    a_dict->size = a_breadth;
     a_dict->entries = malloc(a_dict->size * sizeof(DictEntry));
     for (int i = 0; i < a_dict->size; i++) {
         InitDictEntry(&a_dict->entries[i], i);

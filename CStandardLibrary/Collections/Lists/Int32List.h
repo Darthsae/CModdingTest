@@ -17,7 +17,7 @@ typedef struct {
 } Int32List;
 
 /// @brief Initialize a list with a maximum capacity.
-/// @param[in] a_list The list to be initialized.
+/// @param[out] a_list The list to be initialized.
 /// @param[in] a_capacity The max capacity of the list. 
 void InitInt32List(Int32List*, size_t);
 
@@ -34,13 +34,13 @@ bool Int32ListContains(Int32List*, int32_t);
 size_t Int32ListCount(Int32List*, int32_t);
 
 /// @brief Insert a value into a list at an index.
-/// @param[in] a_list The list to insert the value into.
+/// @param[in,out] a_list The list to insert the value into.
 /// @param[in] a_index The index to insert the value at.
 /// @param[in] a_value The value to insert.
 void Int32ListInsert(Int32List*, size_t, int32_t);
 
 /// @brief Append a value onto the end of a list.
-/// @param[in] a_list The list to append the value to.
+/// @param[in,out] a_list The list to append the value to.
 /// @param[in] a_value The value to append to the end of the list.
 void Int32ListAppend(Int32List*, int32_t);
 
@@ -57,17 +57,17 @@ int32_t Int32ListGet(Int32List*, size_t);
 size_t Int32ListFind(Int32List*, int32_t);
 
 /// @brief Remove a value from a list.
-/// @param[in] a_list The list to remove the value from.
+/// @param[in,out] a_list The list to remove the value from.
 /// @param[in] a_value The value to remove from the list.
 void Int32ListRemoveValue(Int32List*, int32_t);
 
 /// @brief Remove a value from a list at an index.
-/// @param[in] a_list The list to remove the index from.
+/// @param[in,out] a_list The list to remove the index from.
 /// @param[in] a_index The index to remove the value from.
 void Int32ListRemoveIndex(Int32List*, size_t);
 
 /// @brief Pop the top value from a list.
-/// @param[in] a_list The list to pop the top from.
+/// @param[in,out] a_list The list to pop the top from.
 /// @return The value that was popped.
 int32_t Int32ListPopTop(Int32List*);
 
