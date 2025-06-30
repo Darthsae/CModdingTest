@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <CGameAPI.h>
-#include <BinaryTree.h>
+#include <Collections/BinaryTree.h>
 #include <Logging.h>
 #include <stdlib.h>
 #include <Random.h>

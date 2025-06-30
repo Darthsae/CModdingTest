@@ -1,9 +1,10 @@
-#ifndef CGameAPI_H
-#define CGameAPI_H
+#ifndef C_GAME_API_H
+#define C_GAME_API_H
 #include <stdint.h>
 #include <stdbool.h>
-#include <BinaryTree.h>
+#include <Collections/BinaryTree.h>
 #include <EventHandler.h>
+#include <Collections/Dict.h>
 
 /// @struct CGameAPI
 /// @brief The API struct for the game.
@@ -18,11 +19,15 @@ typedef struct {
     struct BinaryTreeNode tree;
     /// @brief 
     EventHandler updateEventHandler;
+    /// @brief 
+    Dict* definitions;
 } CGameAPI;
 
 /// @brief Create a new CGameAPI instance. 
 /// @return A new CGameAPI instance.
 CGameAPI InitCGameAPI(void);
+
+
 
 /// @brief Terminates a CGameAPI instance.
 /// @param a_gameAPI A pointer to the CGameAPI to terminate.

@@ -30,7 +30,7 @@ void InitDictEntry(DictEntry*, uint64_t);
 void DictEntrySet(DictEntry*, uint64_t, void*);
 void* DictEntryGet(DictEntry*, uint64_t);
 
-void InitDict(Dict*);
+void InitDict(Dict*, size_t);
 void DictSet(Dict*, uint64_t, void*);
 void* DictGet(Dict*, uint64_t);
 #endif

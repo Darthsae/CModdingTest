@@ -1,5 +1,5 @@
-#ifndef CMOD_H
-#define CMOD_H
+#ifndef C_MOD_H
+#define C_MOD_H
 #include <Windows.h>
 #include <CString.h>
 

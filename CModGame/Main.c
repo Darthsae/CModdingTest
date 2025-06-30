@@ -8,6 +8,7 @@
 #include <Logging.h>
 #include <time.h>
 #include <CMod.h>
+#include "Data.h"
 
 typedef int8_t (__stdcall *InitModFunctionPtr)(CGameAPI*);
 typedef int8_t (__stdcall *UpdateModFunctionPtr)(CGameAPI*);
@@ -54,17 +55,11 @@ static void m_LoadDefinitions(CMod* a_libraries, size_t a_libraryCount, CGameAPI
 
         LOG_INFO("Loading Definitions for %s", a_libraries[i].name.chars);
         do {
-            memcpy(assetPathDuped + strlen(assetPath), fileData.cFileName, strlen(fileData.cFileName));
-            LOG_INFO("Loading Definition: %s", fileData.cFileName);
-            //libraryCount++;
-            //libraries = realloc(libraries, libraryCount * sizeof(CMod));
-            //libraries[libraryCount - 1].name = InitString(fileData.cFileName);
-            //libraries[libraryCount - 1].library = LoadLibrary(dirPath);
-            //UpdateModFunctionPtr updateFunction = (UpdateModFunctionPtr)GetProcAddress(libraries[libraryCount - 1].library, "UpdateMod");
-            //if (updateFunction != NULL) {
-            //    LOG_INFO("Loaded an update function from %s.", fileData.cFileName);
-            //    EventHandlerAddHook(&gameAPI.updateEventHandler, (GenericFnptr)updateFunction);
-            //}
+            memcpy(assetPathDuped + strlen(assetPath), fileData.cFileName, strlen(fileData.cFileName) + 1);
+            memcpy(assetPathDuped + strlen(assetPath) + strlen(fileData.cFileName), "", 1);
+            LOG_INFO("Loading Definition: %s (%s)", fileData.cFileName, assetPathDuped);
+            char** buf = malloc(2048);
+            LoadData(assetPathDuped, buf);
             LOG_INFO("Loaded Definition: %s", fileData.cFileName);
         } while (FindNextFile(fileIterator, &fileData));
         LOG_INFO("Finished Loading Definitions for %s\n", a_libraries[i].name.chars);
@@ -82,7 +77,7 @@ static void m_LoadData(CMod* a_libraries, size_t a_libraryCount, CGameAPI* a_gam
 
 static uint8_t m_InitMods(CMod* a_libraries, size_t a_libraryCount, CGameAPI* a_gameAPI) {
     for (size_t i = 0; i < a_libraryCount; i++) {
-        LOG_INFO("Loading init function for %s.", a_libraries[i].name);
+        LOG_INFO("Loading init function for %s.", a_libraries[i].name.chars);
         InitModFunctionPtr initFunction = (InitModFunctionPtr)GetProcAddress(a_libraries[i].library, "InitMod");
         if (initFunction == NULL) {
             LOG_ERROR("Failed to load init function.");
@@ -130,9 +125,7 @@ int main(int argc, char** argv) {
             LOG_INFO("Loaded an update function from %s.", fileData.cFileName);
         }
     } while (FindNextFile(fileIterator, &fileData));
-    LOG_INFO("About to free dirPath\n");
     free(dirPath);
-    LOG_INFO("Freed dirPath, about to free fileIterator\n");
     FindClose(fileIterator);
     LOG_INFO("Finished Loading Mods\n");
 

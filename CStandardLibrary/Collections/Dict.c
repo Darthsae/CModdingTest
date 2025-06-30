@@ -1,4 +1,4 @@
-#include <Dict.h>
+#include "Dict.h"
 
 void InitDictEntry(DictEntry* a_dictEntry, uint64_t a_key) {
     a_dictEntry->key = a_key;
@@ -29,8 +29,8 @@ void* DictEntryGet(DictEntry* a_dictEntry, uint64_t a_key) {
     return NULL;
 }
 
-void InitDict(Dict* a_dict) {
-    a_dict->size = 32;
+void InitDict(Dict* a_dict, size_t breadth) {
+    a_dict->size = breadth;
     a_dict->entries = malloc(a_dict->size * sizeof(DictEntry));
     for (int i = 0; i < a_dict->size; i++) {
         InitDictEntry(&a_dict->entries[i], i);

@@ -7,6 +7,10 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
 #set(BUILD_SHARED_LIBS TRUE)
 #set(PRECOMPILE_HEADERS TRUE)
 
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions(__DEBUG_ASSERTS__)
+endif()
+
 file(GLOB_RECURSE CStandardLibrarySourceFiles "CStandardLibrary/*.c" CMAKE_CONFIGURE_DEPENDS)
 file(GLOB_RECURSE CStandardLibraryHeaderFiles "CStandardLibrary/*.h" CMAKE_CONFIGURE_DEPENDS)
 file(GLOB_RECURSE CModLibrarySourceFiles "CModLibrary/*.c" CMAKE_CONFIGURE_DEPENDS)
